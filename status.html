@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Complaint Status</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f4f6f9;
+        }
+
+        .container {
+            width: 700px;
+            margin: 60px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #aaa;
+        }
+
+        h2 {
+            text-align: center;
+            color: #0b3c5d;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #0b3c5d;
+            color: white;
+        }
+
+        .pending {
+            color: orange;
+            font-weight: bold;
+        }
+
+        .no-data {
+            text-align: center;
+            color: gray;
+            padding: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Complaint Status</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Complaint ID</th>
+                <th>Title</th>
+                <th>Type</th>
+                <th>Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody id="statusTable">
+            <!-- Complaints will be loaded here -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+    if (localStorage.getItem("isLoggedIn") !== "true") {
+    window.location.href = "login.html";
+}
+
+    let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
+    let tableBody = document.getElementById("statusTable");
+
+    if (complaints.length === 0) {
+        tableBody.innerHTML = `
+            <tr>
+                <td colspan="5" class="no-data">No complaints found</td>
+            </tr>
+        `;
+    } else {
+        complaints.forEach(c => {
+            tableBody.innerHTML += `
+                <tr>
+                    <td>${c.id}</td>
+                    <td>${c.title}</td>
+                    <td>${c.type}</td>
+                    <td>${c.date}</td>
+                    <td class="pending">${c.status}</td>
+                </tr>
+            `;
+        });
+    }
+</script>
+
+</body>
+</html>
