@@ -15,7 +15,13 @@
 
         /* Header */
         header {
-            background-color: #0b3c5d;
+            /* margin-top:0cm;
+            height: 100vh;
+            background-image: url("Cyber3.jpg");
+            background-size: cover;
+            background-position: center;
+            position: relative; */
+            background-color: #328cc1;
             color: white;
             padding: 15px 30px;
             display: flex;
@@ -23,9 +29,12 @@
             align-items: center;
         }
 
-        header h2 {
+        nav h2 {
             margin: 0;
+            margin-top: 0;
         }
+          
+        
 
         nav a {
             color: white;
@@ -41,6 +50,7 @@
         /* Hero Section */
         .hero {
             background: linear-gradient(to right, #0b3c5d, #328cc1);
+        
             color: white;
             padding: 60px 20px;
             text-align: center;
@@ -145,18 +155,27 @@
 
     <!-- Header -->
     <header>
-        <h2>Cyber Crime Portal</h2>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="awareness.html">Awareness</a>
-            <a href="register.html">Register</a>
-            <a href="login.html">Login</a>
-            <a href="contact.html">Contact</a>
-        </nav>
+       
+            <h2>Cyber Crime Portal</h2>
+            <nav>
+                
+                <a href="index.html">Home</a>
+                <a href="awareness.html">Awareness</a>
+                <a href="register.html">Register</a>
+                <a href="login.html">Login</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        
+        
     </header>
 
+
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" >
+        <!-- <div>
+            <img src="cyber2.jpg" width="300" height="200">
+        </div> -->
+
         <h1>Stay Safe Online</h1>
         <p>Report cyber crimes and learn how to protect yourself from online threats.</p>
         <button class="btn-register" onclick="goRegister()">Register</button>
@@ -168,15 +187,18 @@
         <h2>Cyber Crime Awareness</h2>
         <div class="cards">
             <div class="card">
+                <img src="cyber_pishing.jpg" width="180" >
                 <h3>Phishing</h3>
                 <p>Fake emails or messages that steal personal information.</p>
             </div>
             <div class="card">
-                <h3>Identity Theft</h3>
+                <img src="cyber_identityTheft.jpg" width="200" style="margin-top: 30px;" >
+                <h3 style="margin-top: 30px;">Identity Theft</h3>
                 <p>Misuse of personal data for fraudulent activities.</p>
             </div>
             <div class="card">
-                <h3>Online Fraud</h3>
+                <img src="cyber_fraud.jpg" width="140" >
+                <h3 style="margin-bottom: 40px;">Online Fraud</h3>
                 <p>Financial scams through fake websites or apps.</p>
             </div>
         </div>
