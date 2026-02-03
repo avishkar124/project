@@ -1,5 +1,176 @@
-<html>
-    <body>
-        registration....
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>User Registration | Cyber Crime Portal</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(to right, #0b3c5d, #328cc1);
+}
+
+header {
+    background-color: #0b3c5d;
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: bold;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+}
+
+.register-box {
+    background-color: white;
+    padding: 30px;
+    width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
+
+.register-box h2 {
+    text-align: center;
+    color: #0b3c5d;
+}
+
+.register-box input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.error {
+    color: red;
+    font-size: 13px;
+    margin-top: 3px;
+}
+
+.register-box button {
+    width: 100%;
+    padding: 12px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+footer {
+    background-color: #0b3c5d;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h2>Cyber Crime Portal</h2>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="login.html">Login</a>
+    </nav>
+</header>
+
+<div class="container">
+<div class="register-box">
+
+<h2>New User Registration</h2>
+
+<form onsubmit="return validateForm()">
+
+    <input type="text" id="name" placeholder="Full Name" required pattern="[A-Za-z ]+">
+    <div id="nameError" class="error"></div>
+
+    <input type="email" id="email" placeholder="Email Address" required>
+    <div id="emailError" class="error"></div>
+
+    <input type="text" id="phone" placeholder="Phone Number" required pattern="[0-9]{10}">
+    <div id="phoneError" class="error"></div>
+
+    <input type="password" id="password" placeholder="Create Password" required minlength="6">
+    <div id="passwordError" class="error"></div>
+
+    <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+    <div id="confirmError" class="error"></div>
+
+    <button type="submit">Register</button>
+</form>
+
+</div>
+</div>
+
+<footer>
+<p>© 2026 Cyber Crime Complaint Management System</p>
+</footer>
+
+<script>
+function validateForm() {
+
+    let valid = true;
+
+    // Clear errors
+    document.querySelectorAll(".error").forEach(e => e.innerText = "");
+
+    let name = document.getElementById("name").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let phone = document.getElementById("phone").value.trim();
+    let password = document.getElementById("password").value;
+    let confirm = document.getElementById("confirmPassword").value;
+
+    if (!/^[A-Za-z ]+$/.test(name)) {
+        document.getElementById("nameError").innerText = "Only alphabets allowed";
+        valid = false;
+    }
+
+    if (!email.includes("@")) {
+        document.getElementById("emailError").innerText = "Enter valid email";
+        valid = false;
+    }
+
+    if (!/^\d{10}$/.test(phone)) {
+        document.getElementById("phoneError").innerText = "Enter 10-digit phone number";
+        valid = false;
+    }
+
+    if (password.length < 6) {
+        document.getElementById("passwordError").innerText = "Minimum 6 characters required";
+        valid = false;
+    }
+
+    if (password !== confirm) {
+        document.getElementById("confirmError").innerText = "Passwords do not match";
+        valid = false;
+    }
+
+    if (valid) {
+        window.location.href = "login.html";
+    }
+
+    return false; // frontend demo
+}
+</script>
+
+</body>
 </html>
