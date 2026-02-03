@@ -2,26 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Cyber Crime Complaint Management & Awareness</title>
+    <title>User Login | Cyber Crime Portal</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- CSS -->
     <style>
         body {
             margin: 0;
             font-family: Arial, Helvetica, sans-serif;
-            background-color: #f4f6f9;
+            background: linear-gradient(to right, #0b3c5d, #328cc1);
         }
 
         /* Header */
         header {
-            /* margin-top:0cm;
-            height: 100vh;
-            background-image: url("Cyber3.jpg");
-            background-size: cover;
-            background-position: center;
-            position: relative; */
-            background-color: #328cc1;
+            background-color: #0b3c5d;
             color: white;
             padding: 15px 30px;
             display: flex;
@@ -29,12 +22,9 @@
             align-items: center;
         }
 
-        nav h2 {
+        header h2 {
             margin: 0;
-            margin-top: 0;
         }
-          
-        
 
         nav a {
             color: white;
@@ -43,101 +33,72 @@
             font-weight: bold;
         }
 
-        nav a:hover {
-            text-decoration: underline;
+        /* Login Box */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 90vh;
         }
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(to right, #0b3c5d, #328cc1);
-        
-            color: white;
-            padding: 60px 20px;
+        .login-box {
+            background-color: white;
+            padding: 30px;
+            width: 380px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+        }
+
+        .login-box h2 {
             text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 40px;
-            margin-bottom: 10px;
-        }
-
-        .hero p {
-            font-size: 18px;
-            margin-bottom: 30px;
-        }
-
-        .hero button {
-            padding: 12px 25px;
-            margin: 10px;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .btn-register {
-            background-color: #28a745;
-            color: white;
-        }
-
-        .btn-login {
-            background-color: #ffc107;
-            color: black;
-        }
-
-        .hero button:hover {
-            opacity: 0.9;
-        }
-
-        /* Awareness Section */
-        .awareness {
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        .awareness h2 {
             color: #0b3c5d;
             margin-bottom: 20px;
         }
 
-        .cards {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .card {
-            background-color: white;
-            padding: 20px;
-            width: 250px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-
-        .card h3 {
-            color: #328cc1;
-        }
-
-        /* Action Section */
-        .action {
-            background-color: #eaf2f8;
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        .action button {
-            background-color: #dc3545;
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            font-size: 16px;
+        .login-box input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
             border-radius: 5px;
-            cursor: pointer;
+            border: 1px solid #ccc;
+            font-size: 14px;
         }
 
-        .action button:hover {
-            opacity: 0.9;
+        .login-box button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .login-box button:hover {
+            background-color: #0056b3;
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .register-link a {
+            color: #0b3c5d;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .forgot {
+            text-align: right;
+            font-size: 13px;
+        }
+
+        .forgot a {
+            text-decoration: none;
+            color: #007bff;
         }
 
         /* Footer */
@@ -145,8 +106,7 @@
             background-color: #0b3c5d;
             color: white;
             text-align: center;
-            padding: 15px;
-            margin-top: 20px;
+            padding: 10px;
         }
     </style>
 </head>
@@ -155,83 +115,73 @@
 
     <!-- Header -->
     <header>
-       
-            <h2>Cyber Crime Portal</h2>
-            <nav>
-                
-                <a href="index.html">Home</a>
-                <a href="awareness.html">Awareness</a>
-                <a href="register.html">Register</a>
-                <a href="login.html">Login</a>
-                <a href="contact.html">Contact</a>
-            </nav>
-        
-        
+        <h2>Cyber Crime Portal</h2>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="register.html">Register</a>
+        </nav>
     </header>
 
+    <!-- Login Form -->
+    <div class="container">
+        <div class="login-box">
+            <h2>User Login</h2>
 
-    <!-- Hero Section -->
-    <section class="hero" >
-        <!-- <div>
-            <img src="cyber2.jpg" width="300" height="200">
-        </div> -->
+            <form onsubmit="return loginUser()">
+                <input type="email" id="email" placeholder="Email Address" required>
+                <input type="password" id="password" placeholder="Password" required>
 
-        <h1>Stay Safe Online</h1>
-        <p>Report cyber crimes and learn how to protect yourself from online threats.</p>
-        <button class="btn-register" onclick="goRegister()">Register</button>
-        <button class="btn-login" onclick="goLogin()">Login</button>
-    </section>
+                <div class="forgot">
+                    <a href="#">Forgot Password?</a>
+                </div>
 
-    <!-- Awareness Section -->
-    <section class="awareness">
-        <h2>Cyber Crime Awareness</h2>
-        <div class="cards">
-            <div class="card">
-                <img src="cyber_pishing.jpg" width="180" >
-                <h3>Phishing</h3>
-                <p>Fake emails or messages that steal personal information.</p>
-            </div>
-            <div class="card">
-                <img src="cyber_identityTheft.jpg" width="200" style="margin-top: 30px;" >
-                <h3 style="margin-top: 30px;">Identity Theft</h3>
-                <p>Misuse of personal data for fraudulent activities.</p>
-            </div>
-            <div class="card">
-                <img src="cyber_fraud.jpg" width="140" >
-                <h3 style="margin-bottom: 40px;">Online Fraud</h3>
-                <p>Financial scams through fake websites or apps.</p>
+                <button type="submit">Login</button>
+            </form>
+
+            <div class="register-link">
+                New user? <a href="register.html">Create an account</a>
             </div>
         </div>
-    </section>
-
-    <!-- Action Section -->
-    <section class="action">
-        <h2>Victim of Cyber Crime?</h2>
-        <p>Register your complaint immediately and track its status online.</p>
-        <button onclick="goComplaint()">File a Complaint</button>
-    </section>
+    </div>
 
     <!-- Footer -->
     <footer>
         <p>© 2026 Cyber Crime Complaint Management System</p>
-        <p>Helpline: 1930 | Email: cyberhelp@example.com</p>
     </footer>
 
-    <!-- JavaScript -->
+    
     <script>
-        function goRegister() {
-            window.location.href = "register.html";
-        }
+    function loginUser() {
 
-        function goLogin() {
-            window.location.href = "login.html";
-        }
+    let email = document.getElementById("email").value.trim();
+    let password = document.getElementById("password").value.trim();
 
-        function goComplaint() {
-            alert("Please login to register a complaint.");
-            window.location.href = "login.html";
-        }
-    </script>
+    if (email === "" || password === "") {
+        document.getElementById("error").innerText = "All fields required";
+        return false;
+    }
+
+    // Simulated login
+    localStorage.setItem("isLoggedIn", "true");
+
+    // Role assignment (demo)
+    if (email === "admin@ccms.com") {
+        localStorage.setItem("role", "admin");
+        window.location.href = "admin_dashboard.html";
+    } 
+    else if (email === "officer@ccms.com") {
+        localStorage.setItem("role", "officer");
+        window.location.href = "officer_dashboard.html";
+    } 
+    else {
+        localStorage.setItem("role", "user");
+        window.location.href = "dashboard.html";
+    }
+
+    return false;
+}
+</script>
+
 
 </body>
 </html>
