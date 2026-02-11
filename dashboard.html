@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>User Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+/* Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: #f4f6f9;
+}
+
+/* Header */
+header {
+    background-color: #0b3c5d;
+    color: white;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.menu-btn {
+    font-size: 26px;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+/* Sidebar */
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #0b3c5d;
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 60px;
+    z-index: 1000;
+}
+
+.sidebar a {
+    padding: 12px 20px;
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    display: block;
+}
+
+.sidebar a:hover {
+    background-color: #328cc1;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* Main Content */
+.content {
+    padding: 30px;
+    margin-left: 0;
+    transition: margin-left 0.3s;
+}
+
+.content h2 {
+    color: #0b3c5d;
+    margin-bottom: 15px;
+}
+
+.section {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.section img {
+    width: 120px;
+    border-radius: 10px;
+}
+
+/* Footer */
+footer {
+    background-color: #0b3c5d;
+    color: white;
+    text-align: center;
+    padding: 12px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .section img {
+        width: 80%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Sidebar -->
+<div id="mySidebar" class="sidebar">
+    <span class="close-btn" onclick="closeNav()">×</span>
+    <a href="awareness.html">Cybercrime Awareness</a>
+    <a href="complaint.html">Register Complaint</a>
+    <a href="status.html">Complaint Status</a>
+    <a href="profile.html">Profile</a>
+    <a href="login.html">Logout</a>
+</div>
+
+<!-- Header -->
+<header>
+    <span class="menu-btn" onclick="openNav()">☰</span>
+    <h2>Cyber Crime Dashboard</h2>
+</header>
+
+<!-- Main Content -->
+<div class="content">
+
+    <h2>Welcome to Cyber Crime Complaint Portal</h2>
+    <p>Stay informed, report cyber crimes, and protect yourself online.</p>
+
+    <!-- Section 1: Awareness -->
+    <div class="section">
+        <img src="https://img.icons8.com/color/120/cyber-security.png" alt="Awareness">
+        <div>
+            <h3>Cybercrime Awareness</h3>
+            <p>Learn about different types of cyber threats and how to prevent them. Knowledge is the first step in staying safe online.</p>
+        </div>
+    </div>
+
+    <!-- Section 2: Register Complaint -->
+    <div class="section">
+        <img src="https://img.icons8.com/color/120/submit-resume.png" alt="Register Complaint">
+        <div>
+            <h3>Register Complaint</h3>
+            <p>Easily submit complaints about cyber crimes with detailed descriptions and multiple evidences including images, documents, or videos.</p>
+        </div>
+    </div>
+
+    <!-- Section 3: Status Tracking -->
+    <div class="section">
+        <img src="https://img.icons8.com/color/120/inspection.png" alt="Status">
+        <div>
+            <h3>Complaint Status</h3>
+            <p>Track the progress of your complaints in real-time. Stay updated about investigations and resolutions directly from the dashboard.</p>
+        </div>
+    </div>
+
+    <!-- Section 4: User Profile -->
+    <div class="section">
+        <img src="https://img.icons8.com/color/120/user.png" alt="Profile">
+        <div>
+            <h3>User Profile</h3>
+            <p>Manage your personal details securely, update your contact information, and maintain your profile within the portal.</p>
+        </div>
+    </div>
+
+    <!-- Section 5: About Cyber Crime -->
+    <div class="section">
+        <img src="https://img.icons8.com/color/120/hacker.png" alt="Cyber Crime">
+        <div>
+            <h3>What is Cyber Crime?</h3>
+            <p>Cyber crime involves illegal activities carried out online, including identity theft, online fraud, hacking, phishing, and harassment.</p>
+        </div>
+    </div>
+
+</div>
+
+<!-- Footer -->
+<footer>
+© 2026 Cyber Crime Complaint Management System
+</footer>
+
+<script>
+    if (localStorage.getItem("isLoggedIn") !== "true") {
+    window.location.href = "login.html";
+}
+
+function openNav() {
+    document.getElementById("mySidebar").style.width = "250px";
+    document.querySelector(".content").style.marginLeft = "250px";
+}
+
+function closeNav() {
+    document.getElementById("mySidebar").style.width = "0";
+    document.querySelector(".content").style.marginLeft = "0";
+}
+</script>
+
+</body>
+</html>
