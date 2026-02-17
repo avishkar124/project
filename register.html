@@ -21,6 +21,17 @@ header {
     align-items: center;
 }
 
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 70px;
+    height: 70px;
+    margin-right: 10px;
+}
+
 nav a {
     color: white;
     text-decoration: none;
@@ -86,7 +97,10 @@ footer {
 <body>
 
 <header>
-    <h2>Cyber Crime Portal</h2>
+    <div class="logo-container">
+        <img src="logoW.png.png" alt="Logo" class="logo">
+        <h2>Cyber Crime Portal</h2>
+    </div>
     <nav>
         <a href="index.html">Home</a>
         <a href="login.html">Login</a>

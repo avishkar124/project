@@ -20,6 +20,17 @@ header {
     align-items: center;
 }
 
+.logo-container {
+        display: flex;
+        align-items: center;
+}
+
+.logo {
+    width: 70px;
+    height: 70px;
+    margin-right: 10px;
+}
+
 .container {
     width: 90%;
     margin: 30px auto;
@@ -53,7 +64,10 @@ select {
 <body>
 
 <header>
-<h2>Officer Dashboard</h2>
+<div class="logo-container">
+    <img src="logoW.png.png" alt="Logo" class="logo">
+    <h2>Cyber Crime Portal</h2>
+</div>
 <button onclick="logout()">Logout</button>
 </header>
 
@@ -79,12 +93,36 @@ if (localStorage.getItem("role") !== "officer") {
     window.location.href = "login.html";
 }
 
+// let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
+// let table = document.getElementById("officerTable");
+
+// complaints
+// .filter(c => c.assignedOfficer)
+// .forEach((c, index) => {
+//     table.innerHTML += `
+//     <tr>
+//         <td>${c.id}</td>
+//         <td>${c.title}</td>
+//         <td>${c.status}</td>
+//         <td>
+//             <select onchange="updateStatus('${c.id}', this.value)">
+//                 <option value="">Select</option>
+//                 <option>In Review</option>
+//                 <option>Resolved</option>
+//             </select>
+//         </td>
+//     </tr>
+//     `;
+// });
+
+let officerName = localStorage.getItem("officerName");
+
 let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
 let table = document.getElementById("officerTable");
 
 complaints
-.filter(c => c.assignedOfficer)
-.forEach((c, index) => {
+.filter(c => c.assignedOfficer === officerName)
+.forEach(c => {
     table.innerHTML += `
     <tr>
         <td>${c.id}</td>
@@ -100,6 +138,7 @@ complaints
     </tr>
     `;
 });
+
 
 function updateStatus(id, status) {
     let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
