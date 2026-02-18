@@ -1,207 +1,297 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>User Login | Cyber Crime Portal</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>User Login | Cyber Crime Portal</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background: linear-gradient(to right, #0b3c5d, #328cc1);
-        }
+<style>
 
-        /* Header */
-        header {
-            background-color: #0b3c5d;
-            color: white;
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+/* COLOR SYSTEM */
+:root {
+    --primary: #0b3c5d;
+    --secondary: #328cc1;
+    --accent: #ffc107;
+    --success: #28a745;
+}
 
-        header h2 {
-            margin: 0;
-        }
+/* BACKGROUND */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: linear-gradient(rgba(11,60,93,0.85), rgba(50,140,193,0.85)),
+                url("Cyber3.jpg") center/cover no-repeat;
+}
 
-    .logo-container {
-        display: flex;
-        align-items: center;
-    }
+/* HEADER ON SAME BG */
+header {
+    background: transparent;
+    padding: 10px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+}
 
-    .logo {
-        width: 70px;
-        height: 70px;
-        margin-right: 10px;
-    }
+.logo-container {
+    display: flex;
+    align-items: center;
+}
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 20px;
-            font-weight: bold;
-        }
+.logo {
+    width: 55px;
+    margin-right: 10px;
+}
 
-        /* Login Box */
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 90vh;
-        }
+header h2 {
+    margin: 0;
+    font-size: 20px;
+}
 
-        .login-box {
-            background-color: white;
-            padding: 30px;
-            width: 380px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.3);
-        }
+/* NAV */
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: 600;
+    position: relative;
+}
 
-        .login-box h2 {
-            text-align: center;
-            color: #0b3c5d;
-            margin-bottom: 20px;
-        }
+nav a::after {
+    content: "";
+    width: 0%;
+    height: 2px;
+    background: var(--accent);
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    transition: 0.3s;
+}
 
-        .login-box input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            font-size: 14px;
-        }
+nav a:hover::after { width: 100%; }
 
-        .login-box button {
-            width: 100%;
-            padding: 12px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
+/* LOGIN CONTAINER */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 88vh;
+    padding: 20px;
+}
 
-        .login-box button:hover {
-            background-color: #0056b3;
-        }
+/* LOGIN CARD */
+.login-box {
+    background: white;
+    padding: 35px;
+    width: 380px;
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    border-left: 6px solid var(--secondary);
+    position: relative;
+    animation: fadeIn 0.6s ease;
+}
 
-        .register-link {
-            text-align: center;
-            margin-top: 15px;
-        }
+/* subtle pattern */
+.login-box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, rgba(50,140,193,0.08), transparent 70%);
+    border-top-right-radius: 15px;
+}
 
-        .register-link a {
-            color: #0b3c5d;
-            text-decoration: none;
-            font-weight: bold;
-        }
+/* SECURE BADGE */
+.login-box::after {
+    content: "SECURE LOGIN";
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    background: var(--secondary);
+    color: white;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+}
 
-        .forgot {
-            text-align: right;
-            font-size: 13px;
-        }
+/* HEADING */
+.login-box h2 {
+    text-align: center;
+    color: var(--primary);
+    margin-bottom: 20px;
+    position: relative;
+}
 
-        .forgot a {
-            text-decoration: none;
-            color: #007bff;
-        }
+/* HEADING DIVIDER */
+.login-box h2::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--accent);
+    margin: 8px auto 0;
+    border-radius: 2px;
+}
 
-        /* Footer */
-        footer {
-            background-color: #0b3c5d;
-            color: white;
-            text-align: center;
-            padding: 10px;
-        }
-    </style>
+/* INPUTS */
+.login-box input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.login-box input:focus {
+    border-color: var(--secondary);
+    outline: none;
+    box-shadow: 0 0 8px rgba(50,140,193,0.6);
+}
+
+/* FORGOT LINK */
+.forgot {
+    text-align: right;
+    font-size: 13px;
+    margin-top: 6px;
+}
+
+.forgot a {
+    text-decoration: none;
+    color: var(--secondary);
+}
+
+/* BUTTON */
+.login-box button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(to right, #007bff, #0056b3);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 15px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.login-box button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* REGISTER LINK */
+.register-link {
+    text-align: center;
+    margin-top: 18px;
+    font-size: 14px;
+}
+
+.register-link a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* FOOTER */
+footer {
+    background: transparent;
+    color: white;
+    text-align: center;
+    padding: 12px;
+    font-size: 13px;
+}
+
+/* ANIMATION */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+</style>
 </head>
 
 <body>
 
-    <!-- Header -->
-    <header>
-        <div class="logo-container">
-            <img src="logoW.png.png" alt="Logo" class="logo">
-            <h2>Cyber Crime Portal</h2>
-        </div>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="register.html">Register</a>
-        </nav>
-    </header>
-
-    <!-- Login Form -->
-    <div class="container">
-        <div class="login-box">
-            <h2>User Login</h2>
-
-            <form onsubmit="return loginUser()">
-                <input type="email" id="email" placeholder="Email Address" required>
-                <input type="password" id="password" placeholder="Password" required>
-
-                <div class="forgot">
-                    <a href="#">Forgot Password?</a>
-                </div>
-
-                <button type="submit">Login</button>
-            </form>
-
-            <div class="register-link">
-                New user? <a href="register.html">Create an account</a>
-            </div>
-        </div>
+<header>
+    <div class="logo-container">
+        <img src="logoW.png.png" alt="Logo" class="logo">
+        <h2>Cyber Crime Portal</h2>
     </div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="register.html">Register</a>
+    </nav>
+</header>
 
-    <!-- Footer -->
-    <footer>
-        <p>© 2026 Cyber Crime Complaint Management System</p>
-    </footer>
+<div class="container">
+    <div class="login-box">
 
-    
-    <script>
-    function loginUser() {
+        <h2>User Login</h2>
 
-    let email = document.getElementById("email").value.trim();
-    let password = document.getElementById("password").value.trim();
+        <form onsubmit="return loginUser()">
+            <input type="email" id="email" placeholder="Email Address" required>
+            <input type="password" id="password" placeholder="Password" required>
 
-    if (email === "" || password === "") {
-        document.getElementById("error").innerText = "All fields required";
-        return false;
-    }
+            <div class="forgot">
+                <a href="#">Forgot Password?</a>
+            </div>
 
-    // Simulated login
-    localStorage.setItem("isLoggedIn", "true");
+            <button type="submit">Login</button>
+        </form>
 
-    // Role assignment (demo)
-    if (email === "admin@ccms.com") {
-        localStorage.setItem("role", "admin");
-        window.location.href = "admin_dashboard.html";
-    } 
-    else if (email === "officerA@ccms.com") {
-        localStorage.setItem("role", "officer");
-        localStorage.setItem("officerName", "Officer A");
-        window.location.href = "officer_dashboard.html";
-    } 
-    else if (email === "officerB@ccms.com") {
-        localStorage.setItem("role", "officer");
-        localStorage.setItem("officerName", "Officer B");
-        window.location.href = "officer_dashboard.html";
-    } 
-    else {
-        localStorage.setItem("role", "user");
-        window.location.href = "dashboard.html";
-    }
+        <div class="register-link">
+            New user? <a href="register.html">Create an account</a>
+        </div>
 
+    </div>
+</div>
+
+<footer>
+<p>© 2026 Cyber Crime Complaint Management System</p>
+</footer>
+
+<script>
+function loginUser() {
+
+let email = document.getElementById("email").value.trim();
+let password = document.getElementById("password").value.trim();
+
+if (email === "" || password === "") {
+    document.getElementById("error").innerText = "All fields required";
     return false;
 }
-</script>
 
+localStorage.setItem("isLoggedIn", "true");
+
+if (email === "admin@ccms.com") {
+    localStorage.setItem("role", "admin");
+    window.location.href = "admin_dashboard.html";
+} 
+else if (email === "officerA@ccms.com") {
+    localStorage.setItem("role", "officer");
+    localStorage.setItem("officerName", "Officer A");
+    window.location.href = "officer_dashboard.html";
+} 
+else if (email === "officerB@ccms.com") {
+    localStorage.setItem("role", "officer");
+    localStorage.setItem("officerName", "Officer B");
+    window.location.href = "officer_dashboard.html";
+} 
+else {
+    localStorage.setItem("role", "user");
+    window.location.href = "dashboard.html";
+}
+
+return false;
+}
+</script>
 
 </body>
 </html>

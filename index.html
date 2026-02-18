@@ -1,251 +1,417 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Cyber Crime Complaint Management & Awareness</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Cyber Crime Complaint Management & Awareness</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- CSS -->
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: #f4f6f9;
-        }
+<style>
 
-        /* Header */
-        header {
-            /* margin-top:0cm;
-            height: 100vh;
-            background-image: url("Cyber3.jpg");
-            background-size: cover;
-            background-position: center;
-            position: relative; */
-            background-color: #328cc1;
-            color: white;
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+/* COLOR SYSTEM */
+:root {
+    --primary: #0b3c5d;
+    --secondary: #328cc1;
+    --accent: #ffc107;
+    --danger: #dc3545;
+    --success: #28a745;
+    --bg: #f4f6f9;
+    --text: #333;
+}
 
-    .logo-container {
+/* GLOBAL */
+html { scroll-behavior: smooth; }
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+
+/* HEADER */
+header {
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    padding: 6px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.logo-container {
     display: flex;
     align-items: center;
-    }
+    color: white;
+}
 
-    .logo {
-        width: 70px;
-        height: 70px;
-        margin-right: 10px;
-    }
+.logo {
+    width: 40px;
+    margin-right: 8px;
+}
 
+.logo-container h2 {
+    font-size: 20px;
+    margin: 0;
+}
 
-        nav h2 {
-            margin: 0;
-            margin-top: 0;
-        }
-          
-        
+/* NAV */
+nav {
+    display: flex;
+    align-items: center;
+}
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 20px;
-            font-weight: bold;
-        }
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 25px;
+    font-weight: 600;
+    position: relative;
+    padding: 6px 0;
+    cursor: pointer;
+}
 
-        nav a:hover {
-            text-decoration: underline;
-        }
+nav a::after {
+    content: "";
+    width: 0%;
+    height: 2px;
+    background: var(--accent);
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    transition: 0.3s;
+}
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(to right, #0b3c5d, #328cc1);
-        
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-        }
+nav a:hover::after { width: 100%; }
 
-        .hero h1 {
-            font-size: 40px;
-            margin-bottom: 10px;
-        }
+/* CONTACT DROPDOWN */
+.contact-dropdown {
+    position: relative;
+}
 
-        .hero p {
-            font-size: 18px;
-            margin-bottom: 30px;
-        }
+.dropdown-box {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 35px;
+    background: white;
+    color: #333;
+    min-width: 260px;
+    padding: 18px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    z-index: 999;
+    text-align: left;
+}
 
-        .hero button {
-            padding: 12px 25px;
-            margin: 10px;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+.dropdown-box h3 {
+    margin-top: 12px;
+    margin-bottom: 4px;
+    color: var(--secondary);
+    font-size: 16px;
+}
 
-        .btn-register {
-            background-color: #28a745;
-            color: white;
-        }
+.dropdown-box p {
+    margin: 6px 0 12px;
+    font-size: 14px;
+    color: #555;
+}
 
-        .btn-login {
-            background-color: #ffc107;
-            color: black;
-        }
+/* HERO */
+.hero {
+    background: linear-gradient(rgba(11,60,93,0.85), rgba(50,140,193,0.85)),
+                url("Cyber3.jpeg") center/cover no-repeat;
+    padding: 100px 20px;
+    text-align: center;
+    color: white;
+}
 
-        .hero button:hover {
-            opacity: 0.9;
-        }
+.hero h1 { font-size: 42px; margin-bottom: 10px; }
 
-        /* Awareness Section */
-        .awareness {
-            padding: 40px 20px;
-            text-align: center;
-        }
+.hero p { max-width: 700px; margin: auto; margin-bottom: 30px; }
 
-        .awareness h2 {
-            color: #0b3c5d;
-            margin-bottom: 20px;
-        }
+/* BUTTONS */
+.hero button,
+.action button {
+    padding: 12px 28px;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
 
-        .cards {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
+.btn-register { background: var(--success); color: white; }
+.btn-login { background: var(--accent); }
 
-        .card {
-            background-color: white;
-            padding: 20px;
-            width: 250px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
+.hero button:hover,
+.action button:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
 
-        .card h3 {
-            color: #328cc1;
-        }
+/* SECTION WIDTH */
+section {
+    max-width: 1200px;
+    margin: auto;
+}
 
-        /* Action Section */
-        .action {
-            background-color: #eaf2f8;
-            padding: 40px 20px;
-            text-align: center;
-        }
+/* STATS */
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 60px 20px;
+    flex-wrap: wrap;
+    background: white;
+}
 
-        .action button {
-            background-color: #dc3545;
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+.stat-box {
+    text-align: center;
+    background: #f8fbff;
+    padding: 25px;
+    border-radius: 15px;
+    width: 220px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
 
-        .action button:hover {
-            opacity: 0.9;
-        }
+.stat-box:hover { transform: translateY(-6px); }
 
-        /* Footer */
-        footer {
-            background-color: #0b3c5d;
-            color: white;
-            text-align: center;
-            padding: 15px;
-            margin-top: 20px;
-        }
-    </style>
+/* AWARENESS */
+.awareness {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.awareness h2 {
+    color: var(--primary);
+    margin-bottom: 40px;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    width: 260px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.card img {
+    height: 110px;
+    margin-bottom: 15px;
+}
+
+.card h3 { color: var(--secondary); }
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+/* ACTION */
+.action {
+    background: linear-gradient(to right, #eaf2f8, #d6eaf8);
+    padding: 60px 20px;
+    text-align: center;
+    border-radius: 20px;
+    margin: 40px auto;
+}
+
+/* FOOTER */
+footer {
+    background: var(--primary);
+    color: white;
+    padding: 40px 20px;
+    margin-top: 50px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.footer-box {
+    max-width: 250px;
+}
+
+.footer-box h3 {
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+footer a {
+    color: #ddd;
+    text-decoration: none;
+}
+
+footer a:hover { color: white; }
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 13px;
+    color: #bbb;
+}
+
+</style>
 </head>
 
 <body>
 
-    
-    <header>
-        <div class="logo-container">
-        <img src="logoW.png.png" alt="Logo" class="logo">
+<header>
+    <div class="logo-container">
+        <img src="logoW.png.png" class="logo" alt="Cyber Crime Portal Logo">
         <h2>Cyber Crime Portal</h2>
     </div>
-            <nav>
-                
-                <a href="index.html">Home</a>
-                <a href="awareness.html">Awareness</a>
-                <a href="register.html">Register</a>
-                <a href="login.html">Login</a>
-                <a href="contact.html">Contact</a>
-            </nav>
-        
-        
-    </header>
 
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="awareness.html">Awareness</a>
+        <a href="register.html">Register</a>
+        <a href="login.html">Login</a>
 
-    <!-- Hero Section -->
-    <section class="hero" >
-        <!-- <div>
-            <img src="cyber2.jpg" width="300" height="200">
-        </div> -->
+        <!-- CONTACT DROPDOWN -->
+        <div class="contact-dropdown">
+            <a onclick="toggleContact()">Contact ▾</a>
 
-        <h1>Stay Safe Online</h1>
-        <p>Report cyber crimes and learn how to protect yourself from online threats.</p>
-        <button class="btn-register" onclick="goRegister()">Register</button>
-        <button class="btn-login" onclick="goLogin()">Login</button>
-    </section>
+            <div id="contactBox" class="dropdown-box">
+                <h3>Helpline</h3>
+                <p><strong>📞 1930</strong> (24×7 Cyber Fraud Support)</p>
 
-    <!-- Awareness Section -->
-    <section class="awareness">
-        <h2>Cyber Crime Awareness</h2>
-        <div class="cards">
-            <div class="card">
-                <img src="cyber_pishing.jpg" width="180" >
-                <h3>Phishing</h3>
-                <p>Fake emails or messages that steal personal information.</p>
-            </div>
-            <div class="card">
-                <img src="cyber_identityTheft.jpg" width="200" style="margin-top: 30px;" >
-                <h3 style="margin-top: 30px;">Identity Theft</h3>
-                <p>Misuse of personal data for fraudulent activities.</p>
-            </div>
-            <div class="card">
-                <img src="cyber_fraud.jpg" width="140" >
-                <h3 style="margin-bottom: 40px;">Online Fraud</h3>
-                <p>Financial scams through fake websites or apps.</p>
+                <h3>Email</h3>
+                <p>📧 cyberhelp@example.com</p>
+
+                <h3>Office</h3>
+                <p>Cyber Crime Cell,<br>Pune, Maharashtra, India</p>
+
+                <h3>Working Hours</h3>
+                <p>Mon – Fri : 10:00 AM – 6:00 PM</p>
             </div>
         </div>
-    </section>
+    </nav>
+</header>
 
-    <!-- Action Section -->
-    <section class="action">
-        <h2>Victim of Cyber Crime?</h2>
-        <p>Register your complaint immediately and track its status online.</p>
-        <button onclick="goComplaint()">File a Complaint</button>
-    </section>
+<section class="hero">
+    <h1>Stay Safe Online</h1>
+    <p>Report cyber crimes and protect yourself from phishing, fraud, and identity theft.</p>
+    <button class="btn-register" onclick="goRegister()">Register</button>
+    <button class="btn-login" onclick="goLogin()">Login</button>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        <p>© 2026 Cyber Crime Complaint Management System</p>
-        <p>Helpline: 1930 | Email: cyberhelp@example.com</p>
-    </footer>
+<section class="stats">
+    <div class="stat-box">
+        <h2>1930</h2>
+        <p>Helpline Number</p>
+    </div>
+    <div class="stat-box">
+        <h2>24×7</h2>
+        <p>Support Available</p>
+    </div>
+    <div class="stat-box">
+        <h2>Secure</h2>
+        <p>Complaint System</p>
+    </div>
+</section>
 
-    <!-- JavaScript -->
-    <script>
-        function goRegister() {
-            window.location.href = "register.html";
-        }
+<section class="awareness">
+    <h2>Cyber Crime Awareness</h2>
+    <div class="cards">
+        <div class="card">
+            <img src="cyber_pishing.jpg" alt="Phishing Attack Illustration">
+            <h3>Phishing</h3>
+            <p>Fake emails or messages used to steal passwords and bank details.</p>
+        </div>
 
-        function goLogin() {
-            window.location.href = "login.html";
-        }
+        <div class="card">
+            <img src="cyber_identityTheft.jpg" alt="Identity Theft Illustration">
+            <h3>Identity Theft</h3>
+            <p>Using your personal data for illegal financial activities.</p>
+        </div>
 
-        function goComplaint() {
-            alert("Please login to register a complaint.");
-            window.location.href = "login.html";
-        }
-    </script>
+        <div class="card">
+            <img src="cyber_fraud.jpg" alt="Online Fraud Illustration">
+            <h3>Online Fraud</h3>
+            <p>Scams through fake websites, apps, and payment links.</p>
+        </div>
+    </div>
+</section>
+
+<section class="action">
+    <h2>Victim of Cyber Crime?</h2>
+    <p>Register your complaint immediately and track status securely.</p>
+    <button onclick="goComplaint()">File a Complaint</button>
+</section>
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-box">
+            <h3>About</h3>
+            <p>Cyber Crime Complaint Management System helps citizens report cyber crimes securely.</p>
+        </div>
+
+        <div class="footer-box">
+            <h3>Legal</h3>
+            <p><a href="#">Privacy Policy</a></p>
+            <p><a href="#">Terms & Conditions</a></p>
+        </div>
+
+        <div class="footer-box">
+            <h3>Contact</h3>
+            <p>Helpline: <strong>1930</strong></p>
+            <p>Email: cyberhelp@example.com</p>
+            <p>India</p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 Cyber Crime Complaint Management System
+    </div>
+</footer>
+
+<script>
+function goRegister() {
+    window.location.href = "register.html";
+}
+function goLogin() {
+    window.location.href = "login.html";
+}
+function goComplaint() {
+    alert("Please login to register a complaint.");
+    window.location.href = "login.html";
+}
+
+/* CONTACT DROPDOWN TOGGLE */
+function toggleContact() {
+    const box = document.getElementById("contactBox");
+    box.style.display = box.style.display === "block" ? "none" : "block";
+}
+
+/* CLOSE DROPDOWN WHEN CLICKING OUTSIDE */
+document.addEventListener("click", function(event) {
+    const dropdown = document.querySelector(".contact-dropdown");
+    const box = document.getElementById("contactBox");
+
+    if (!dropdown.contains(event.target)) {
+        box.style.display = "none";
+    }
+});
+</script>
+
 
 </body>
 </html>
