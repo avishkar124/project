@@ -2,66 +2,87 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Complaint Status</title>
+<title>Admin Dashboard | Cyber Crime Portal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-html, body {
-    height: 100%;
-    margin: 0;
-    font-family: Arial, sans-serif;
-}
-
-/* FULL PAGE BACKGROUND */
+/* GLOBAL */
 body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    margin: 0;
     min-height: 100vh;
-    background: linear-gradient(rgba(11,60,93,0.85), rgba(11,60,93,0.85)),
-                url('Cyber3.jpeg') no-repeat center center fixed;
-    background-size: cover;
-    color: #333;
+
+    /* Single smooth background layer */
+    background-image: linear-gradient(rgba(11,60,93,0.92), rgba(11,60,93,0.92)),
+                      url("cyber3.jpg");
+
+    background-size: cover;        /* always fill screen */
+    background-position: center;   /* keep image centered */
+    background-repeat: no-repeat;  /* prevent tiling */
+    background-attachment: fixed;  /* optional parallax effect */
 }
 
 /* HEADER */
 header {
-    background: transparent;
+    background: rgba(11, 60, 93, 0.95);
+    backdrop-filter: blur(6px);
     color: white;
-    padding: 10px 30px;
+    padding: 12px 22px;   /* increased a bit */
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+    box-shadow: 0 3px 12px rgba(0,0,0,0.25);
 }
 
+.logo {
+    width: 50px;   /* slightly bigger logo */
+    height: 50px;
+    margin-right: 8px;
+}
+
+header h2 {
+    font-size: 20px;   /* slightly bigger text */
+    margin: 0;
+}
+
+header button {
+    padding: 6px 14px;
+    font-size: 13px;
+    border-radius: 16px;
+}
 .logo-container {
     display: flex;
     align-items: center;
 }
 
-.logo {
-    width: 55px;
-    height: 55px;
-    margin-right: 10px;
+
+
+
+
+header button:hover {
+    background: #c82333;
+    transform: translateY(-2px);
 }
 
-/* CARD CONTAINER */
+/* CONTAINER CARD */
 .container {
-    width: 720px;
-    margin: 60px auto;
-    background: white;
-    padding: 30px;
+    width: 92%;
+    margin: 40px auto;
+    background: rgba(255,255,255,0.95);
+    padding: 25px;
     border-radius: 15px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-    border-left: 6px solid #328cc1;
-    animation: fadeIn 0.5s ease;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.25);
 }
 
 /* HEADING */
-h2 {
+.container h3 {
     text-align: center;
     color: #0b3c5d;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    position: relative;
 }
 
-h2::after {
+.container h3::after {
     content: "";
     display: block;
     width: 70px;
@@ -75,63 +96,60 @@ h2::after {
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 25px;
-    border-radius: 10px;
+    border-radius: 12px;
     overflow: hidden;
 }
 
+/* HEADER ROW */
 th {
-    background: linear-gradient(to right, #0b3c5d, #328cc1);
+    background: #0b3c5d;
     color: white;
-    padding: 12px;
-    font-weight: 600;
+    padding: 14px 10px;
+    font-size: 14px;
+    text-transform: uppercase;
+    border-right: 2px solid white;   /* creates section blocks */
 }
 
+th:last-child {
+    border-right: none;
+}
+
+/* TABLE CELLS */
 td {
     padding: 12px;
-    text-align: center;
     border-bottom: 1px solid #eee;
-    vertical-align: middle;
+    font-size: 14px;
 }
 
-th, td {
-    padding: 12px;
-    text-align: center;
-    vertical-align: middle;
-}
-
-
-
-
+/* STRIPED ROWS */
 tr:nth-child(even) {
-    background-color: #f8f9fb;
+    background: #f8fbff;
 }
 
 tr:hover {
-    background-color: #eef5ff;
-    transition: 0.2s;
+    background: #eaf4ff;
 }
 
-/* STATUS BADGE */
-.pending {
-    color: #0b3c5d;
+/* STATUS TEXT */
+td:nth-child(4) {
     font-weight: 600;
-    text-align: center;
+    color: #0b3c5d;
 }
 
-
-
-
-.no-data {
-    text-align: center;
-    color: gray;
-    padding: 15px;
+/* DROPDOWN */
+select {
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-/* ANIMATION */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(15px); }
-    to { opacity: 1; transform: translateY(0); }
+select:focus {
+    border-color: #328cc1;
+    outline: none;
+    box-shadow: 0 0 6px rgba(50,140,193,0.6);
 }
 </style>
 </head>
@@ -139,57 +157,68 @@ tr:hover {
 <body>
 
 <header>
-    <div class="logo-container">
-        <img src="logoW.png.png" alt="Logo" class="logo">
-        <h3>Cyber Crime Portal</h3>
-    </div>
+<div class="logo-container">
+    <img src="logoW.png.png" alt="Logo" class="logo">
+    <h2>Cyber Crime Portal</h2>
+</div>
+<button onclick="logout()">Logout</button>
 </header>
 
 <div class="container">
-    <h2>Complaint Status</h2>
+<h3>All Complaints</h3>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Complaint ID</th>
-                <th>Title</th>
-                <th>Type</th>
-                <th>Date</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody id="statusTable">
-            <!-- Complaints will be loaded here -->
-        </tbody>
-    </table>
+<table>
+<thead>
+<tr>
+    <th>ID</th>
+    <th>Title</th>
+    <th>Type</th>
+    <th>Status</th>
+    <th>Assign Officer</th>
+</tr>
+</thead>
+<tbody id="complaintTable"></tbody>
+</table>
 </div>
 
 <script>
-if (localStorage.getItem("isLoggedIn") !== "true") {
+// Role protection
+if (localStorage.getItem("role") !== "admin") {
     window.location.href = "login.html";
 }
 
 let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
-let tableBody = document.getElementById("statusTable");
+let table = document.getElementById("complaintTable");
 
-if (complaints.length === 0) {
-    tableBody.innerHTML = `
-        <tr>
-            <td colspan="5" class="no-data">No complaints found</td>
-        </tr>
+complaints.forEach((c, index) => {
+    table.innerHTML += `
+    <tr>
+        <td>${c.id}</td>
+        <td>${c.title}</td>
+        <td>${c.type}</td>
+        <td>${c.status}</td>
+        <td>
+            <select onchange="assignOfficer(${index}, this.value)">
+                <option value="">Select</option>
+                <option value="Officer A">Officer A</option>
+                <option value="Officer B">Officer B</option>
+            </select>
+        </td>
+    </tr>
     `;
-} else {
-    complaints.forEach(c => {
-        tableBody.innerHTML += `
-            <tr>
-                <td>${c.id}</td>
-                <td>${c.title}</td>
-                <td>${c.type}</td>
-                <td>${c.date}</td>
-                <td class="pending">${c.status}</td>
-            </tr>
-        `;
-    });
+});
+
+function assignOfficer(index, officer) {
+    complaints[index].assignedOfficer = officer;
+    complaints[index].status = "Assigned";
+    localStorage.setItem("complaints", JSON.stringify(complaints));
+    alert("Officer assigned");
+    location.reload();
+}
+
+function logout() {
+    localStorage.clear();
+    window.location.href = "login.html";
 }
 </script>
 
