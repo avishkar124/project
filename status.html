@@ -75,41 +75,57 @@ h2::after {
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 25px;
-    border-radius: 10px;
+    border-radius: 12px;
     overflow: hidden;
 }
 
+/* HEADER CELLS */
 th {
-    background: linear-gradient(to right, #0b3c5d, #328cc1);
+    background: #0b3c5d;
     color: white;
-    padding: 12px;
+    padding: 14px 10px;
+    font-size: 14px;
     font-weight: 600;
+    letter-spacing: 0.5px;
+
+    text-align: center;        /* horizontal center */
+    vertical-align: middle;    /* vertical center */
+    border-right: 2px solid #ffffff33;
 }
 
+th:last-child {
+    border-right: none;
+}
+
+/* DATA CELLS */
 td {
-    padding: 12px;
-    text-align: center;
+    padding: 14px 10px;
     border-bottom: 1px solid #eee;
+    font-size: 14px;
+
+    text-align: center;        /* horizontal center */
+    vertical-align: middle;    /* vertical center */
 }
 
+/* STRIPED ROWS */
 tr:nth-child(even) {
-    background-color: #f8f9fb;
+    background: #f8fbff;
 }
 
 tr:hover {
-    background-color: #eef5ff;
-    transition: 0.2s;
+    background: #eaf4ff;
 }
 
-/* STATUS BADGE */
-.pending {
-    padding: 12px;
-    font-size: 13px;
-    font-weight: bold;
-    text-align: center;
-    border-bottom: 1px solid #eee;
+/* STATUS TEXT STYLE */
+td:nth-child(3) {
+    font-weight: 600;
+    color: #0b3c5d;
+}
 
+/* DROPDOWN CENTER */
+td select {
+    display: block;
+    margin: auto;
 }
 
 .no-data {
