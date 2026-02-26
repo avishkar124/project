@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Edit Profile</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:'Segoe UI',Tahoma,sans-serif;
+}
+
+body{ background:#f4f6f9; }
+
+/* HEADER */
+header{
+    background:linear-gradient(to right,#0b3c5d,#328cc1);
+    color:white;
+    padding:12px 20px;
+    display:flex;
+    align-items:center;
+    box-shadow:0 2px 8px rgba(0,0,0,0.2);
+}
+
+.logo-container{ display:flex; align-items:center; }
+.logo{ width:50px; height:50px; margin-right:10px; }
+
+/* TITLE */
+.page-title{
+    text-align:center;
+    margin-top:40px;
+    margin-bottom:90px;
+    color:#0b3c5d;
+    font-size:26px;
+    font-weight:bold;
+}
+
+/* CARD */
+.container{
+    max-width:650px;
+    background:white;
+    margin:0 auto 50px;
+    padding:90px 30px 30px;
+    border-radius:16px;
+    box-shadow:0 8px 24px rgba(0,0,0,0.08);
+    position:relative;
+}
+
+/* AVATAR */
+.avatar{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    background:#eaf2fb;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:absolute;
+    top:-60px;
+    left:50%;
+    transform:translateX(-50%);
+    border:6px solid white;
+    box-shadow:0 4px 12px rgba(0,0,0,0.15);
+}
+.avatar img{ width:70px; }
+
+.user-name{
+    text-align:center;
+    margin-bottom:25px;
+    color:#0b3c5d;
+    font-size:22px;
+    font-weight:bold;
+}
+
+/* INFO BOX */
+.info-box{
+    background:#f7f9fc;
+    padding:14px;
+    border-radius:8px;
+    margin-bottom:15px;
+}
+
+.label{
+    font-size:13px;
+    color:#777;
+    font-weight:bold;
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin-top:6px;
+    border:1px solid #ccc;
+    border-radius:6px;
+    font-size:14px;
+}
+
+.error{
+    color:red;
+    font-size:12px;
+    margin-top:4px;
+}
+
+/* BUTTONS */
+.btn-group{ text-align:center; margin-top:25px; }
+
+button{
+    padding:10px 20px;
+    margin:8px 6px 0;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:14px;
+    transition:0.3s;
+}
+
+.save-btn{ background:#28a745; color:white; }
+.cancel-btn{ background:#dc3545; color:white; }
+
+button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 4px 12px rgba(0,0,0,0.15);
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo-container">
+        <img src="logoW.png.png" alt="Logo" class="logo">
+        <h2>Cyber Crime Portal</h2>
+    </div>
+</header>
+
+<h2 class="page-title">Edit Profile</h2>
+
+<div class="container">
+
+    <div class="avatar">
+        <img src="https://img.icons8.com/color/96/user.png" alt="User">
+    </div>
+
+    <h3 class="user-name">Update Your Details</h3>
+
+    <div class="info-box">
+        <div class="label">Name</div>
+        <input type="text" id="name">
+        <div class="error" id="nameError"></div>
+    </div>
+
+    <div class="info-box">
+        <div class="label">Email</div>
+        <input type="text" id="email">
+        <div class="error" id="emailError"></div>
+    </div>
+
+    <div class="info-box">
+        <div class="label">Mobile Number</div>
+        <input type="text" id="phone" maxlength="10">
+        <div class="error" id="phoneError"></div>
+    </div>
+
+    <div class="btn-group">
+        <button class="save-btn" onclick="saveProfile()">Save Changes</button>
+        <button class="cancel-btn" onclick="location.href='profile.html'">Cancel</button>
+    </div>
+
+</div>
+
+<script>
+let user = JSON.parse(localStorage.getItem("user"));
+
+if(user){
+    document.getElementById("name").value = user.name || "";
+    document.getElementById("email").value = user.email || "";
+    document.getElementById("phone").value = user.phone || "";
+}else{
+    alert("Please login first");
+    window.location.href="login.html";
+}
+
+function validateEmail(email){
+    return email.includes("@") &&
+           email.includes(".") &&
+           email.indexOf("@") < email.lastIndexOf(".");
+}
+
+function validatePhone(phone){
+    return /^[0-9]{10}$/.test(phone);
+}
+
+function clearErrors(){
+    document.getElementById("nameError").innerText="";
+    document.getElementById("emailError").innerText="";
+    document.getElementById("phoneError").innerText="";
+}
+
+function saveProfile(){
+    clearErrors();
+
+    let name = document.getElementById("name").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let phone = document.getElementById("phone").value.trim();
+
+    let valid = true;
+
+    if(name === ""){
+        document.getElementById("nameError").innerText="Name is required";
+        valid = false;
+    }
+
+    if(!validateEmail(email)){
+        document.getElementById("emailError").innerText="Enter a valid email";
+        valid = false;
+    }
+
+    if(!validatePhone(phone)){
+        document.getElementById("phoneError").innerText="Enter 10 digit mobile number";
+        valid = false;
+    }
+
+    if(!valid) return;
+
+    let updatedUser = { name, email, phone };
+
+    localStorage.setItem("user", JSON.stringify(updatedUser));
+
+    alert("Profile updated successfully");
+    window.location.href="profile.html";
+}
+</script>
+
+</body>
+</html>

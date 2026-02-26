@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>User Profile</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+body {
+    background: #f4f6f9;
+}
+
+/* HEADER */
+header {
+    background: linear-gradient(to right, #0b3c5d, #328cc1);
+    color: white;
+    padding: 8px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+/* PAGE TITLE */
+.page-title {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 80px;
+    color: #0b3c5d;
+}
+
+/* PROFILE CARD */
+.container {
+    max-width: 650px;
+    background: white;
+    margin: 0 auto 50px;
+    padding: 80px 30px 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    position: relative;
+}
+
+/* AVATAR */
+.avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: #eaf2fb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.avatar img {
+    width: 70px;
+}
+
+/* NAME */
+.user-name {
+    text-align: center;
+    margin-bottom: 5px;
+    color: #0b3c5d;
+}
+
+.user-role {
+    text-align: center;
+    color: #777;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+/* INFO BOX */
+.info-box {
+    background: #f7f9fc;
+    padding: 14px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.label {
+    font-size: 13px;
+    color: #777;
+}
+
+.value {
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.portal-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.page-title {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #0b3c5d;
+}
+
+/* BUTTONS */
+.btn-group {
+    text-align: center;
+    margin-top: 25px;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 8px 6px 0;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.edit-btn {
+    background: #ffc107;
+    color: black;
+}
+
+.pass-btn {
+    background: #17a2b8;
+    color: white;
+}
+
+.logout-btn {
+    padding: 7px 15px;
+    font-size: 12px;
+    border-radius: 6px;
+    background: #e45967;
+    color: white;
+}
+
+.home-btn {
+    padding: 7px 15px;
+    font-size: 12px;
+    border-radius: 6px;
+    background: #79cf32;
+    color: white;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo-container">
+        <img src="logoW.png.png" alt="Logo" class="logo">
+        <h2>Cyber Crime Portal</h2>
+    </div>
+     <div>
+        <button class="home-btn" onclick="location.href='dashboard.html'">Home</button>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+</header>
+
+<h2 class="page-title">User Profile</h2>
+
+<div class="container">
+
+    <div class="avatar">
+        <img src="https://img.icons8.com/color/96/user.png" alt="User">
+    </div>
+
+    <h3 class="user-name" id="nameHeading"></h3>
+    <p class="user-role"><b>Registered User</b></p>
+
+    <div class="info-box">
+        <div class="label">Name : </div>
+        <div class="value" id="name"></div>
+    </div>
+
+    <div class="info-box">
+        <div class="label">Email : </div>
+        <div class="value" id="email"></div>
+    </div>
+
+    <div class="info-box">
+        <div class="label">Mobile Number : </div>
+        <div class="value" id="phone"></div>
+    </div>
+
+    <div class="btn-group">
+        <button class="edit-btn" onclick="location.href='edit_profile.html'">Edit Profile</button>
+        <button class="pass-btn" onclick="location.href='change_password.html'">Change Password</button>
+    </div>
+
+</div>
+
+<script>
+let user = JSON.parse(localStorage.getItem("user"));
+
+if (user) {
+    document.getElementById("nameHeading").innerText = user.name || "-";
+    document.getElementById("name").innerText = user.name || "-";
+    document.getElementById("email").innerText = user.email || "-";
+    document.getElementById("phone").innerText = user.phone || "-";
+}
+
+function logout() {
+    localStorage.removeItem("isLoggedIn");
+    window.location.href = "login.html";
+}
+</script>
+
+</body>
+</html>

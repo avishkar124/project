@@ -2,154 +2,102 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Admin Dashboard | Cyber Crime Portal</title>
+<title>User Profile</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-/* GLOBAL */
 body {
     font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: #f4f6f9;
     margin: 0;
-    min-height: 100vh;
-
-    /* Single smooth background layer */
-    background-image: linear-gradient(rgba(11,60,93,0.92), rgba(11,60,93,0.92)),
-                      url("cyber3.jpg");
-
-    background-size: cover;        /* always fill screen */
-    background-position: center;   /* keep image centered */
-    background-repeat: no-repeat;  /* prevent tiling */
-    background-attachment: fixed;  /* optional parallax effect */
 }
 
 /* HEADER */
 header {
-    background: rgba(11, 60, 93, 0.95);
-    backdrop-filter: blur(6px);
+    background: linear-gradient(to right, #0b3c5d, #328cc1);
     color: white;
-    padding: 12px 22px;   /* increased a bit */
+    padding: 12px 18px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 3px 12px rgba(0,0,0,0.25);
 }
 
-.logo {
-    width: 50px;   /* slightly bigger logo */
-    height: 50px;
-    margin-right: 8px;
-}
-
-header h2 {
-    font-size: 20px;   /* slightly bigger text */
-    margin: 0;
-}
-
-header button {
-    padding: 6px 14px;
-    font-size: 13px;
-    border-radius: 16px;
-}
-.logo-container {
+.header-left {
     display: flex;
     align-items: center;
+    gap: 10px;
 }
 
-
-
-
-
-header button:hover {
-    background: #c82333;
-    transform: translateY(-2px);
+.header-left img {
+    width: 40px;
 }
 
-/* CONTAINER CARD */
-.container {
-    width: 92%;
-    margin: 40px auto;
-    background: rgba(255,255,255,0.95);
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 10px 35px rgba(0,0,0,0.25);
+.portal-title {
+    font-size: 20px;
+    font-weight: bold;
 }
 
-/* HEADING */
-.container h3 {
+.header-buttons button {
+    margin-left: 10px;
+}
+
+/* PROFILE HEADING */
+.page-title {
     text-align: center;
-    color: #0b3c5d;
-    margin-bottom: 20px;
-    position: relative;
-}
-
-.container h3::after {
-    content: "";
-    display: block;
-    width: 70px;
-    height: 3px;
-    background: #ffc107;
-    margin: 8px auto 0;
-    border-radius: 2px;
-}
-
-/* TABLE */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-/* HEADER ROW */
-th {
-    background: #0b3c5d;
-    color: white;
-    padding: 14px 10px;
-    font-size: 14px;
-    text-transform: uppercase;
-    border-right: 2px solid white;   /* creates section blocks */
-}
-
-th:last-child {
-    border-right: none;
-}
-
-/* TABLE CELLS */
-td {
-    padding: 12px;
-    border-bottom: 1px solid #eee;
-    font-size: 14px;
-}
-
-/* STRIPED ROWS */
-tr:nth-child(even) {
-    background: #f8fbff;
-}
-
-tr:hover {
-    background: #eaf4ff;
-}
-
-/* STATUS TEXT */
-td:nth-child(4) {
-    font-weight: 600;
+    margin-top: 30px;
+    font-size: 24px;
+    font-weight: bold;
     color: #0b3c5d;
 }
 
-/* DROPDOWN */
-select {
-    padding: 6px 10px;
+/* CARD */
+.container {
+    max-width: 520px;
+    background: white;
+    margin: 25px auto 40px;
+    padding: 30px 25px;
+    border-radius: 14px;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.12);
+    text-align: center;
+}
+
+.profile-icon {
+    width: 85px;
+    margin-bottom: 15px;
+}
+
+/* INFO TEXT */
+.info {
+    text-align: left;
+    margin-top: 15px;
+}
+
+.info p {
+    font-size: 15px;
+    margin: 12px 0;
+}
+
+.info b {
+    color: #0b3c5d;
+}
+
+/* BUTTONS */
+button {
+    padding: 10px 16px;
+    border: none;
     border-radius: 6px;
-    border: 1px solid #ccc;
-    font-size: 13px;
     cursor: pointer;
-    transition: 0.3s;
+    color: white;
+    font-size: 14px;
 }
 
-select:focus {
-    border-color: #328cc1;
-    outline: none;
-    box-shadow: 0 0 6px rgba(50,140,193,0.6);
+.home-btn { background: #28a745; }
+.edit-btn { background: #ffc107; color: black; }
+.pass-btn { background: #17a2b8; }
+.logout-btn { background: #dc3545; }
+
+.button-group {
+    margin-top: 20px;
 }
 </style>
 </head>
@@ -157,67 +105,50 @@ select:focus {
 <body>
 
 <header>
-<div class="logo-container">
-    <img src="logoW.png.png" alt="Logo" class="logo">
-    <h2>Cyber Crime Portal</h2>
-</div>
-<button onclick="logout()">Logout</button>
+    <div class="header-left">
+        <img src="logo.png" alt="Logo" style="width:40px;">
+        <span class="portal-title">Cyber Crime Portal</span>
+    </div>
+
+    <div>
+        <button class="home-btn" onclick="location.href='dashboard.html'">Home</button>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
 </header>
+<h2 class="page-title">User Profile</h2>
 
 <div class="container">
-<h3>All Complaints</h3>
 
-<table>
-<thead>
-<tr>
-    <th>ID</th>
-    <th>Title</th>
-    <th>Type</th>
-    <th>Status</th>
-    <th>Assign Officer</th>
-</tr>
-</thead>
-<tbody id="complaintTable"></tbody>
-</table>
+    <img src="profile_icon.png" class="profile-icon" alt="Profile Icon">
+
+    <div class="info">
+        <p><b>Name:</b> <span id="name"></span></p>
+        <p><b>Email:</b> <span id="email"></span></p>
+        <p><b>Mobile No.:</b> <span id="phone"></span></p>
+    </div>
+
+    <div class="button-group">
+        <button class="edit-btn" onclick="location.href='edit_profile.html'">Edit Profile</button>
+        <button class="pass-btn" onclick="location.href='change_password.html'">Change Password</button>
+    </div>
+
 </div>
 
 <script>
-// Role protection
-if (localStorage.getItem("role") !== "admin") {
+let user = JSON.parse(localStorage.getItem("user"));
+
+if (!user) {
+    alert("Please login again");
     window.location.href = "login.html";
 }
 
-let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
-let table = document.getElementById("complaintTable");
-
-complaints.forEach((c, index) => {
-    table.innerHTML += `
-    <tr>
-        <td>${c.id}</td>
-        <td>${c.title}</td>
-        <td>${c.type}</td>
-        <td>${c.status}</td>
-        <td>
-            <select onchange="assignOfficer(${index}, this.value)">
-                <option value="">Select</option>
-                <option value="Officer A">Officer A</option>
-                <option value="Officer B">Officer B</option>
-            </select>
-        </td>
-    </tr>
-    `;
-});
-
-function assignOfficer(index, officer) {
-    complaints[index].assignedOfficer = officer;
-    complaints[index].status = "Assigned";
-    localStorage.setItem("complaints", JSON.stringify(complaints));
-    alert("Officer assigned");
-    location.reload();
-}
+document.getElementById("name").innerText = user.name;
+document.getElementById("email").innerText = user.email;
+document.getElementById("phone").innerText = user.phone;
 
 function logout() {
-    localStorage.clear();
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("user");
     window.location.href = "login.html";
 }
 </script>

@@ -6,7 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-/* RESET */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -22,15 +21,10 @@ body {
 header {
     background: linear-gradient(to right, #0b3c5d, #328cc1);
     color: white;
-    padding: 10px 18px;
+    padding: 12px 18px;
     display: flex;
     align-items: center;
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-}
-
-.logo-container {
-    display: flex;
-    align-items: center;
 }
 
 .logo {
@@ -39,53 +33,9 @@ header {
     margin-right: 10px;
 }
 
-.menu-btn {
-    font-size: 24px;
-    cursor: pointer;
-    margin-right: 18px;
-}
-
-/* SIDEBAR */
-.sidebar {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background: linear-gradient(to bottom, #0b3c5d, #06283d);
-    overflow-x: hidden;
-    transition: 0.3s;
-    padding-top: 60px;
-    z-index: 1000;
-}
-
-.sidebar a {
-    padding: 14px 22px;
-    text-decoration: none;
-    font-size: 16px;
-    color: white;
-    display: block;
-    transition: 0.2s;
-    border-left: 4px solid transparent;
-}
-
-.sidebar a:hover {
-    background-color: #328cc1;
-    border-left: 4px solid #ffc107;
-}
-
-.close-btn {
-    position: absolute;
-    top: 12px;
-    right: 20px;
-    font-size: 28px;
-    cursor: pointer;
-}
-
 /* MAIN CONTENT */
 .content {
     padding: 30px;
-    transition: margin-left 0.3s;
 }
 
 .content h2 {
@@ -96,6 +46,11 @@ header {
 .content p {
     margin-bottom: 25px;
     color: #555;
+}
+
+/* CLICKABLE CARD LINK */
+.card-link {
+    text-decoration: none;
 }
 
 /* DASHBOARD CARDS */
@@ -110,6 +65,7 @@ header {
     gap: 20px;
     transition: 0.3s;
     border-left: 5px solid #328cc1;
+    cursor: pointer;
 }
 
 .section:hover {
@@ -138,96 +94,67 @@ footer {
     margin-top: 30px;
     font-size: 14px;
 }
-
-/* RESPONSIVE */
-@media screen and (max-width: 768px) {
-    .section {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .section img {
-        width: 70px;
-    }
-}
 </style>
 </head>
 
 <body>
 
-<!-- SIDEBAR -->
-<div id="mySidebar" class="sidebar">
-    <span class="close-btn" onclick="closeNav()">×</span>
-    <a href="awareness.html">Cybercrime Awareness</a>
-    <a href="complaint.html">Register Complaint</a>
-    <a href="status.html">Complaint Status</a>
-
-    <a href="login.html">Logout</a>
-</div>
-
-<!-- HEADER -->
 <header>
-    <span class="menu-btn" onclick="openNav()">☰</span>
-    <div class="logo-container">
-        <img src="logoW.png.png" alt="Logo" class="logo">
-        <h2>Cyber Crime Portal</h2>
-    </div>
+    <img src="logoW.png.png" alt="Logo" class="logo">
+    <h2>Cyber Crime Portal</h2>
 </header>
 
-<!-- MAIN CONTENT -->
 <div class="content">
 
     <h2>Welcome to Cyber Crime Complaint Portal</h2>
     <p>Stay informed, report cyber crimes, and protect yourself online.</p>
 
     <!-- Awareness -->
-    <div class="section">
-        <img src="https://img.icons8.com/color/120/cyber-security.png" alt="Awareness">
-        <div>
-            <h3>Cybercrime Awareness</h3>
-            <p>Learn about cyber threats and prevention techniques to stay safe online.</p>
+    <a href="awareness.html" class="card-link">
+        <div class="section">
+            <img src="https://img.icons8.com/color/120/cyber-security.png">
+            <div>
+                <h3>Cybercrime Awareness</h3>
+                <p>Learn about cyber threats and prevention techniques to stay safe online.</p>
+            </div>
         </div>
-    </div>
+    </a>
 
     <!-- Register Complaint -->
-    <div class="section">
-        <img src="https://img.icons8.com/color/120/submit-resume.png" alt="Register Complaint">
-        <div>
-            <h3>Register Complaint</h3>
-            <p>Submit cyber crime complaints with detailed description and evidence.</p>
+    <a href="complaint.html" class="card-link">
+        <div class="section">
+            <img src="https://img.icons8.com/color/120/submit-resume.png">
+            <div>
+                <h3>Register Complaint</h3>
+                <p>Submit cyber crime complaints with detailed description and evidence.</p>
+            </div>
         </div>
-    </div>
+    </a>
 
     <!-- Status -->
-    <div class="section">
-        <img src="https://img.icons8.com/color/120/inspection.png" alt="Status">
-        <div>
-            <h3>Complaint Status</h3>
-            <p>Track your complaint progress and investigation updates in real time.</p>
+    <a href="status.html" class="card-link">
+        <div class="section">
+            <img src="https://img.icons8.com/color/120/inspection.png">
+            <div>
+                <h3>Complaint Status</h3>
+                <p>Track your complaint progress and investigation updates in real time.</p>
+            </div>
         </div>
-    </div>
+    </a>
 
     <!-- Profile -->
-<div class="section">
-    <img src="https://img.icons8.com/color/120/user.png" alt="Profile">
-    <div>
-        <h3>User Profile</h3>
-        <p>Update your personal details and manage your account securely.</p>
-    </div>
-</div>
-
-<!-- About -->
-<div class="section">
-<img src="https://cdn-icons-png.flaticon.com/128/2913/2913133.png " alt="Cyber Crime">
-    <div>
-        <h3> What is Cyber Crime?</h3>
-        <p>Includes identity theft, online fraud, phishing, hacking, and digital harassment.</p>
-    </div>
-</div>
+    <a href="profile.html" class="card-link">
+        <div class="section">
+            <img src="https://img.icons8.com/color/120/user.png">
+            <div>
+                <h3>User Profile</h3>
+                <p>Update your personal details and manage your account securely.</p>
+            </div>
+        </div>
+    </a>
 
 </div>
 
-<!-- FOOTER -->
 <footer>
 © 2026 Cyber Crime Complaint Management System
 </footer>
@@ -236,18 +163,7 @@ footer {
 if (localStorage.getItem("isLoggedIn") !== "true") {
     window.location.href = "login.html";
 }
-
-function openNav() {
-    document.getElementById("mySidebar").style.width = "250px";
-    document.querySelector(".content").style.marginLeft = "250px";
-}
-
-function closeNav() {
-    document.getElementById("mySidebar").style.width = "0";
-    document.querySelector(".content").style.marginLeft = "0";
-}
 </script>
 
 </body>
-
 </html>

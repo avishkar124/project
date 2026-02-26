@@ -6,158 +6,65 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-/* GLOBAL */
 body {
-    font-family: 'Segoe UI', Tahoma, sans-serif;
-    margin: 0;
-    min-height: 100vh;
-
-    /* Single smooth background layer */
-    background-image: linear-gradient(rgba(11,60,93,0.92), rgba(11,60,93,0.92)),
-                      url("cyber3.jpg");
-
-    background-size: cover;        /* always fill screen */
-    background-position: center;   /* keep image centered */
-    background-repeat: no-repeat;  /* prevent tiling */
-    background-attachment: fixed;  /* optional parallax effect */
+    font-family: Arial;
+    background: #f4f6f9;
 }
 
-/* HEADER */
 header {
-    background: rgba(11, 60, 93, 0.95);
-    backdrop-filter: blur(6px);
+    background: #0b3c5d;
     color: white;
-    padding: 12px 22px;   /* increased a bit */
+    padding: 15px 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 3px 12px rgba(0,0,0,0.25);
 }
 
-.logo {
-    width: 50px;   /* slightly bigger logo */
-    height: 50px;
-    margin-right: 8px;
-}
-
-header h2 {
-    font-size: 20px;   /* slightly bigger text */
-    margin: 0;
-}
-
-header button {
-    padding: 6px 14px;
-    font-size: 13px;
-    border-radius: 16px;
-}
 .logo-container {
-    display: flex;
-    align-items: center;
-}
+        display: flex;
+        align-items: center;
+    }
 
-header button:hover {
-    background: #c82333;
-    transform: translateY(-2px);
-}
+    .logo {
+        width: 70px;
+        height: 70px;
+        margin-right: 10px;
+    }
 
-/* CONTAINER CARD */
 .container {
-    width: 92%;
-    margin: 40px auto;
-    background: rgba(255,255,255,0.95);
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 10px 35px rgba(0,0,0,0.25);
+    width: 90%;
+    margin: 30px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
 }
 
-/* HEADING */
-.container h3 {
-    text-align: center;
-    color: #0b3c5d;
-    margin-bottom: 20px;
-    position: relative;
-}
-
-.container h3::after {
-    content: "";
-    display: block;
-    width: 70px;
-    height: 3px;
-    background: #ffc107;
-    margin: 8px auto 0;
-    border-radius: 2px;
-}
-
-/* TABLE */
 table {
     width: 100%;
     border-collapse: collapse;
-    border-radius: 12px;
-    overflow: hidden;
 }
 
-/* HEADER CELLS */
+th, td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
 th {
     background: #0b3c5d;
     color: white;
-    padding: 14px 10px;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-
-    text-align: center;        /* horizontal center */
-    vertical-align: middle;    /* vertical center */
-    border-right: 2px solid #ffffff33;
 }
 
-th:last-child {
-    border-right: none;
-}
-
-/* DATA CELLS */
-td {
-    padding: 14px 10px;
-    border-bottom: 1px solid #eee;
-    font-size: 14px;
-
-    text-align: center;        /* horizontal center */
-    vertical-align: middle;    /* vertical center */
-}
-
-/* STRIPED ROWS */
-tr:nth-child(even) {
-    background: #f8fbff;
-}
-
-tr:hover {
-    background: #eaf4ff;
-}
-
-/* STATUS TEXT STYLE */
-td:nth-child(3) {
-    font-weight: 600;
-    color: #0b3c5d;
-}
-
-/* DROPDOWN CENTER */
-td select {
-    display: block;
-    margin: auto;
-}
-/* DROPDOWN */
-select {
-    padding: 6px 10px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    font-size: 13px;
+button {
+    padding: 6px 12px;
+    background: #28a745;
+    color: white;
+    border: none;
     cursor: pointer;
-    transition: 0.3s;
 }
 
-select:focus {
-    border-color: #328cc1;
-    outline: none;
-    box-shadow: 0 0 6px rgba(50,140,193,0.6);
+select {
+    padding: 5px;
 }
 </style>
 </head>
