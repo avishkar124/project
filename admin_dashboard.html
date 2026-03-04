@@ -9,39 +9,61 @@
 body {
     font-family: Arial;
     background: #f4f6f9;
+    margin: 0;
 }
 
+/* HEADER */
 header {
-    background: #0b3c5d;
+    background: linear-gradient(to right, #0b3c5d, #328cc1);
     color: white;
-    padding: 15px 30px;
+    padding: 15px 25px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .logo-container {
-        display: flex;
-        align-items: center;
-    }
+    display: flex;
+    align-items: center;
+}
 
-    .logo {
-        width: 70px;
-        height: 70px;
-        margin-right: 10px;
-    }
+.logo {
+    width: 60px;
+    margin-right: 10px;
+}
 
+button {
+    padding: 6px 12px;
+    background: #ffffff;
+    color: #0b3c5d;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #ddd;
+}
+
+/* CONTENT */
 .container {
     width: 90%;
     margin: 30px auto;
     background: white;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+h3 {
+    color: #0b3c5d;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 15px;
 }
 
 th, td {
@@ -55,14 +77,6 @@ th {
     color: white;
 }
 
-button {
-    padding: 6px 12px;
-    background: #28a745;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
 select {
     padding: 5px;
 }
@@ -72,11 +86,16 @@ select {
 <body>
 
 <header>
-<div class="logo-container">
-    <img src="logoW.png.png" alt="Logo" class="logo">
-    <h2>Cyber Crime Portal</h2>
-</div>
-<button onclick="logout()">Logout</button>
+    <div class="logo-container">
+        <img src="logoW.png.png" class="logo">
+        <h2>Admin Dashboard</h2>
+    </div>
+    <div>
+        <button onclick="window.location.href='manage_officers.html'">
+            Manage Officers
+        </button>
+        <button onclick="logout()">Logout</button>
+    </div>
 </header>
 
 <div class="container">
@@ -89,7 +108,7 @@ select {
     <th>Title</th>
     <th>Type</th>
     <th>Status</th>
-    <th>Assign Officer</th>
+    <th>Assigned Officer</th>
 </tr>
 </thead>
 <tbody id="complaintTable"></tbody>
@@ -97,15 +116,22 @@ select {
 </div>
 
 <script>
-// Role protection
+// Role Protection
 if (localStorage.getItem("role") !== "admin") {
     window.location.href = "login.html";
 }
 
 let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
+let officers = JSON.parse(localStorage.getItem("officers")) || [];
 let table = document.getElementById("complaintTable");
 
+// Load complaints
 complaints.forEach((c, index) => {
+
+    let officerOptions = officers.map(o =>
+        `<option value="${o}" ${c.assignedOfficer === o ? "selected" : ""}>${o}</option>`
+    ).join("");
+
     table.innerHTML += `
     <tr>
         <td>${c.id}</td>
@@ -115,23 +141,25 @@ complaints.forEach((c, index) => {
         <td>
             <select onchange="assignOfficer(${index}, this.value)">
                 <option value="">Select</option>
-                <option value="Officer A">Officer A</option>
-                <option value="Officer B">Officer B</option>
+                ${officerOptions}
             </select>
         </td>
     </tr>
     `;
 });
 
-function assignOfficer(index, officer) {
-    complaints[index].assignedOfficer = officer;
-    complaints[index].status = "Assigned";
-    localStorage.setItem("complaints", JSON.stringify(complaints));
-    alert("Officer assigned");
-    location.reload();
+// Assign officer
+function assignOfficer(index, officer){
+    if(officer){
+        complaints[index].assignedOfficer = officer;
+        complaints[index].status = "Assigned";
+        localStorage.setItem("complaints", JSON.stringify(complaints));
+        alert("Officer assigned successfully");
+        location.reload();
+    }
 }
 
-function logout() {
+function logout(){
     localStorage.clear();
     window.location.href = "login.html";
 }

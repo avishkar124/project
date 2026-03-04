@@ -2,102 +2,136 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>User Profile</title>
+<title>Complaint Status</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body {
-    font-family: 'Segoe UI', Tahoma, sans-serif;
-    background: #f4f6f9;
+html, body {
+    height: 100%;
     margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* FULL PAGE BACKGROUND */
+body {
+    min-height: 100vh;
+    background: linear-gradient(rgba(11,60,93,0.85), rgba(11,60,93,0.85)),
+                url('Cyber3.jpeg') no-repeat center center fixed;
+    background-size: cover;
+    color: #333;
 }
 
 /* HEADER */
 header {
+    background: transparent;
+    color: white;
+    padding: 10px 30px;
+    display: flex;
+    align-items: center;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 55px;
+    height: 55px;
+    margin-right: 10px;
+}
+
+/* CARD CONTAINER */
+.container {
+    width: 720px;
+    margin: 60px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    border-left: 6px solid #328cc1;
+    animation: fadeIn 0.5s ease;
+}
+
+/* HEADING */
+h2 {
+    text-align: center;
+    color: #0b3c5d;
+    margin-bottom: 10px;
+}
+
+h2::after {
+    content: "";
+    display: block;
+    width: 70px;
+    height: 3px;
+    background: #ffc107;
+    margin: 8px auto 0;
+    border-radius: 2px;
+}
+
+/* TABLE */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 25px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th {
     background: linear-gradient(to right, #0b3c5d, #328cc1);
     color: white;
-    padding: 12px 18px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    padding: 12px;
+    font-weight: 600;
 }
 
-.header-left {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.header-left img {
-    width: 40px;
-}
-
-.portal-title {
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.header-buttons button {
-    margin-left: 10px;
-}
-
-/* PROFILE HEADING */
-.page-title {
+td {
+    padding: 12px;
     text-align: center;
-    margin-top: 30px;
-    font-size: 24px;
-    font-weight: bold;
-    color: #0b3c5d;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
 }
 
-/* CARD */
-.container {
-    max-width: 520px;
-    background: white;
-    margin: 25px auto 40px;
-    padding: 30px 25px;
-    border-radius: 14px;
-    box-shadow: 0 8px 22px rgba(0,0,0,0.12);
+th, td {
+    padding: 12px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+
+
+
+tr:nth-child(even) {
+    background-color: #f8f9fb;
+}
+
+tr:hover {
+    background-color: #eef5ff;
+    transition: 0.2s;
+}
+
+/* STATUS BADGE */
+.pending {
+    color: #0b3c5d;
+    font-weight: 600;
     text-align: center;
 }
 
-.profile-icon {
-    width: 85px;
-    margin-bottom: 15px;
+
+
+
+.no-data {
+    text-align: center;
+    color: gray;
+    padding: 15px;
 }
 
-/* INFO TEXT */
-.info {
-    text-align: left;
-    margin-top: 15px;
-}
-
-.info p {
-    font-size: 15px;
-    margin: 12px 0;
-}
-
-.info b {
-    color: #0b3c5d;
-}
-
-/* BUTTONS */
-button {
-    padding: 10px 16px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    color: white;
-    font-size: 14px;
-}
-
-.home-btn { background: #28a745; }
-.edit-btn { background: #ffc107; color: black; }
-.pass-btn { background: #17a2b8; }
-.logout-btn { background: #dc3545; }
-
-.button-group {
-    margin-top: 20px;
+/* ANIMATION */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 </style>
 </head>
@@ -105,51 +139,57 @@ button {
 <body>
 
 <header>
-    <div class="header-left">
-        <img src="logo.png" alt="Logo" style="width:40px;">
-        <span class="portal-title">Cyber Crime Portal</span>
-    </div>
-
-    <div>
-        <button class="home-btn" onclick="location.href='dashboard.html'">Home</button>
-        <button class="logout-btn" onclick="logout()">Logout</button>
+    <div class="logo-container">
+        <img src="logoW.png.png" alt="Logo" class="logo">
+        <h3>Cyber Crime Portal</h3>
     </div>
 </header>
-<h2 class="page-title">User Profile</h2>
 
 <div class="container">
+    <h2>Complaint Status</h2>
 
-    <img src="profile_icon.png" class="profile-icon" alt="Profile Icon">
-
-    <div class="info">
-        <p><b>Name:</b> <span id="name"></span></p>
-        <p><b>Email:</b> <span id="email"></span></p>
-        <p><b>Mobile No.:</b> <span id="phone"></span></p>
-    </div>
-
-    <div class="button-group">
-        <button class="edit-btn" onclick="location.href='edit_profile.html'">Edit Profile</button>
-        <button class="pass-btn" onclick="location.href='change_password.html'">Change Password</button>
-    </div>
-
+    <table>
+        <thead>
+            <tr>
+                <th>Complaint ID</th>
+                <th>Title</th>
+                <th>Type</th>
+                <th>Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody id="statusTable">
+            <!-- Complaints will be loaded here -->
+        </tbody>
+    </table>
 </div>
 
 <script>
-let user = JSON.parse(localStorage.getItem("user"));
-
-if (!user) {
-    alert("Please login again");
+if (localStorage.getItem("isLoggedIn") !== "true") {
     window.location.href = "login.html";
 }
 
-document.getElementById("name").innerText = user.name;
-document.getElementById("email").innerText = user.email;
-document.getElementById("phone").innerText = user.phone;
+let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
+let tableBody = document.getElementById("statusTable");
 
-function logout() {
-    localStorage.removeItem("isLoggedIn");
-    localStorage.removeItem("user");
-    window.location.href = "login.html";
+if (complaints.length === 0) {
+    tableBody.innerHTML = `
+        <tr>
+            <td colspan="5" class="no-data">No complaints found</td>
+        </tr>
+    `;
+} else {
+    complaints.forEach(c => {
+        tableBody.innerHTML += `
+            <tr>
+                <td>${c.id}</td>
+                <td>${c.title}</td>
+                <td>${c.type}</td>
+                <td>${c.date}</td>
+                <td class="pending">${c.status}</td>
+            </tr>
+        `;
+    });
 }
 </script>
 

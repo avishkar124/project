@@ -17,19 +17,25 @@ body {
     background: #f4f6f9;
 }
 
-/* HEADER */
-header {
+
+ header {
     background: linear-gradient(to right, #0b3c5d, #328cc1);
     color: white;
-    padding: 12px 18px;
+    padding: 8px 14px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
 .logo {
-    width: 55px;
-    height: 55px;
+    width: 50px;
+    height: 50px;
     margin-right: 10px;
 }
 
@@ -79,6 +85,13 @@ header {
     padding: 10px;
     border-radius: 12px;
 }
+.logout-btn {
+    padding: 7px 15px;
+    font-size: 12px;
+    border-radius: 6px;
+    background: #e45967;
+    color: white;
+}
 
 .section h3 {
     color: #0b3c5d;
@@ -100,8 +113,13 @@ footer {
 <body>
 
 <header>
-    <img src="logoW.png.png" alt="Logo" class="logo">
-    <h2>Cyber Crime Portal</h2>
+    <div class="logo-container">
+        <img src="logoW.png.png" alt="Logo" class="logo">
+        <h2>Cyber Crime Portal</h2>
+    </div>
+     <div>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
 </header>
 
 <div class="content">
@@ -161,6 +179,10 @@ footer {
 
 <script>
 if (localStorage.getItem("isLoggedIn") !== "true") {
+    window.location.href = "login.html";
+}
+function logout() {
+    localStorage.removeItem("isLoggedIn");
     window.location.href = "login.html";
 }
 </script>

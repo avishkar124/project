@@ -36,6 +36,22 @@ header {
     display: flex;
     align-items: center;
 }
+.home-btn {
+    padding: 4px 12px;
+    font-size: 13px;
+    background: white;
+     color: #0b3c5d;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    width: auto;              /* important */
+    min-width: 70px;          /* optional small fixed width */
+}
+
+.home-btn:hover {
+     background: #e3f2fd;
+}
 
 .logo {
     width: 55px;
@@ -145,11 +161,15 @@ td select {
 
 <body>
 
-<header>
+<header style="justify-content: space-between;">
     <div class="logo-container">
         <img src="logoW.png.png" alt="Logo" class="logo">
         <h3>Cyber Crime Portal</h3>
     </div>
+
+    <button onclick="window.location.href='dashboard.html'" class="home-btn">
+        Home
+    </button>
 </header>
 
 <div class="container">
